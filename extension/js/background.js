@@ -46,11 +46,16 @@ async function makeRelayAddressForTargetElement(info, tab) {
     return;
   }
 
-  browser.tabs.sendMessage(tab.id, {
-    type: "fillTargetWithRelayAddress",
-    targetElementId : info.targetElementId,
-    relayAddress: newRelayAddress,
-  });
+  browser.tabs.sendMessage(
+    tab.id,
+    {
+      type: "fillTargetWithRelayAddress",
+      targetElementId : info.targetElementId,
+      relayAddress: newRelayAddress,
+    },
+    {
+      frameId: info.frameId
+    });
 }
 
 browser.menus.create({
